@@ -1,0 +1,22 @@
+.login-main-div{
+  /* border: 1px solid green; */
+  /* width: 400px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(164,182,202);
+  
+}
+.login-form{
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wishlist-icon:hover{
+  color: red;
+}
+body{
+  
+}
