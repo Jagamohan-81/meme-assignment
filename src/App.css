@@ -24,9 +24,16 @@
 }
 .container .icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 10px;
+  right: 10px;
 }
 .icon {
-  size: 10px;
+  /* position: absolute;
+  bottom: 0;
+  right: 10px;
+  z-index: 20; */
+  font-size: 40px;
+  /* background-color: white; */
+}
+.actions-secondary {
 }

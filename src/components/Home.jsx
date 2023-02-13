@@ -145,7 +145,7 @@ const Home = () => {
               data?.map((elm) => {
                 return (
                   <div
-                    className="card m-1 container"
+                    className="card m-1 container shadow-lg p-3 mb-5 bg-body rounded"
                     style={{ width: "19%" }}
                     key={elm.id}
                   >
