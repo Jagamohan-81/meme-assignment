@@ -10,12 +10,18 @@ import {
 import { useNavigate } from "react-router-dom";
 import Wishlist from "./Wishlist";
 import Swal from "sweetalert2";
+import ModalComponent from "./ModalComponent";
+import SingleMemeDetail from "./SingleMemeDetail";
+
 const Home = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [wishlistView, setWishlistView] = useState(false);
   const [serachText, setSearchText] = useState("");
+  const [show, setShow] = useState(false);
+  const [singleData, setSingleData] = useState([]);
+
   const dispatch = useDispatch();
   const initialData = useSelector(
     (state) => state.initialDataReducer.initialData
@@ -62,15 +68,17 @@ const Home = () => {
         return meme;
       }
     });
-    // if (searched.length > 0) {
 
-    // } else {
-    // }
     setData(searched);
   };
   const handleRemove = (e, data) => {
     e.preventDefault();
     dispatch(removeFromWishlist(data));
+  };
+  const showModal = (e, data) => {
+    e.preventDefault();
+    setSingleData(data);
+    setShow(true);
   };
 
   return (
@@ -125,6 +133,7 @@ const Home = () => {
             </div>
           </nav>
         </div>
+        <ModalComponent show={show} setShow={setShow} data={singleData} />
 
         {wishlistView == true ? (
           <Wishlist wishlistData={wishlistData} />
@@ -162,6 +171,9 @@ const Home = () => {
                       className="card-img-top"
                       src={elm.url}
                       alt="Card image cap"
+                      onClick={(e) => {
+                        showModal(e, elm);
+                      }}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{elm.name}</h5>
