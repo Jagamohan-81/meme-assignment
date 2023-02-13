@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../store/actions";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+
 function Wishlist({ wishlistData }) {
   //const wishlistData = useSelector((state) => state.wishlistReducer.wishlist);
   const [loading, setLoading] = useState(false);
@@ -15,16 +17,25 @@ function Wishlist({ wishlistData }) {
       <div className="card-holder-parent  row ">
         {loading == true ? (
           <h1>Loading...</h1>
+        ) : wishlistData.length < 1 ? (
+          <h6 style={{}}>No meme added to wishlist</h6>
         ) : (
           wishlistData?.map((elm) => {
             return (
               /* */
 
               <div
-                className="card m-1"
+                className="card m-1 container"
                 style={{ width: "19%", height: "auto" }}
                 key={elm.id}
               >
+                <BsSuitHeartFill
+                  style={{ color: "red" }}
+                  onClick={(e) => {
+                    handleRemove(e, elm);
+                  }}
+                  className="icon fa-lg"
+                />
                 <img
                   className="card-img-top"
                   src={elm.url}
@@ -32,13 +43,6 @@ function Wishlist({ wishlistData }) {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{elm.name}</h5>
-                </div>
-                <div
-                  onClick={(e) => {
-                    handleRemove(e, elm);
-                  }}
-                >
-                  Remove
                 </div>
               </div>
             );

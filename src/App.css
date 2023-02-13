@@ -1,22 +1,32 @@
-.login-main-div{
+.login-main-div {
   /* border: 1px solid green; */
   /* width: 400px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(164,182,202);
-  
+  background-color: rgb(164, 182, 202);
 }
-.login-form{
+.login-form {
   width: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.wishlist-icon:hover{
+.wishlist-icon:hover {
   color: red;
 }
-body{
-  
+.container {
+  position: relative;
+}
+.container img {
+  display: block;
+}
+.container .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.icon {
+  size: 10px;
 }

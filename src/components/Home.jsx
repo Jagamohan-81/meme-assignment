@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { RxHalf1, RxHeart } from "react-icons/rx";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import {
   initialAdd,
@@ -9,6 +9,7 @@ import {
 } from "../store/actions";
 import { useNavigate } from "react-router-dom";
 import Wishlist from "./Wishlist";
+import Swal from "sweetalert2";
 const Home = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -50,6 +51,7 @@ const Home = () => {
 
     let ind = wishlistData.indexOf(data);
     ind < 0 ? dispatch(addToWishlist(data)) : null;
+    Swal.fire("Success!", "Meme added to your wishlist!", "success");
     // console.log(ind);
   };
   const handleSerach = (e) => {
@@ -60,7 +62,15 @@ const Home = () => {
         return meme;
       }
     });
+    // if (searched.length > 0) {
+
+    // } else {
+    // }
     setData(searched);
+  };
+  const handleRemove = (e, data) => {
+    e.preventDefault();
+    dispatch(removeFromWishlist(data));
   };
 
   return (
@@ -122,14 +132,32 @@ const Home = () => {
           <div className="card-holder-parent  row ">
             {loading == true ? (
               <h1>Loading...</h1>
-            ) : (
+            ) : data.length > 0 ? (
               data?.map((elm) => {
                 return (
                   <div
-                    className="card m-1"
-                    style={{ width: "19%", height: "auto" }}
+                    className="card m-1 container"
+                    style={{ width: "19%" }}
                     key={elm.id}
                   >
+                    {wishlistData.indexOf(elm) < 0 ? (
+                      <BsSuitHeart
+                        onClick={(e) => {
+                          handleAdd(e, elm);
+                        }}
+                        className="icon fa-lg"
+                      >
+                        Add to Whishlist
+                      </BsSuitHeart>
+                    ) : (
+                      <BsSuitHeartFill
+                        style={{ color: "red" }}
+                        onClick={(e) => {
+                          handleRemove(e, elm);
+                        }}
+                        className="icon fa-lg"
+                      />
+                    )}
                     <img
                       className="card-img-top"
                       src={elm.url}
@@ -138,21 +166,11 @@ const Home = () => {
                     <div className="card-body">
                       <h5 className="card-title">{elm.name}</h5>
                     </div>
-                    {wishlistView == false ? (
-                      <button
-                        type="button"
-                        className="btn btn-success  m-2"
-                        onClick={(e) => {
-                          handleAdd(e, elm);
-                        }}
-                      >
-                        Add2Whishlist
-                      </button>
-                    ) : null}
-                    <i className="fas fa-plus-circle"></i>
                   </div>
                 );
               })
+            ) : (
+              <h1>No memes found</h1>
             )}
           </div>
         )}
