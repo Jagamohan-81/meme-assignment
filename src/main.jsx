@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import store from "./store/index";
+import Wishlist from "./components/Wishlist";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/main" element={<Home />}></Route>
+          <Route path="/wishlist" element={<Wishlist />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
