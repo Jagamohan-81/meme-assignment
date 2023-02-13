@@ -4,7 +4,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(164, 182, 202);
+}
+body {
+  background-color: #a8f1f7;
+}
+.navbar-div {
+  background-color: aquamarine;
 }
 .login-form {
   width: 400px;

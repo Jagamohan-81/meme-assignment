@@ -84,8 +84,8 @@ const Home = () => {
   return (
     <>
       <div className="main-home-page">
-        <div className="navbar-div">
-          <nav className="navbar navbar-light bg-light">
+        <div className="navbar-div" style={{ backgroundColor: "#66dde8" }}>
+          <nav className="navbar  ">
             <div className="container-fluid">
               <a className="navbar-brand">
                 {wishlistView == true
