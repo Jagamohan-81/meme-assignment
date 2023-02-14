@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../store/actions";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
-
+import Swal from "sweetalert2";
 function Wishlist({ wishlistData }) {
   //const wishlistData = useSelector((state) => state.wishlistReducer.wishlist);
   const [loading, setLoading] = useState(false);
@@ -10,6 +10,7 @@ function Wishlist({ wishlistData }) {
   const handleRemove = (e, data) => {
     e.preventDefault();
     dispatch(removeFromWishlist(data));
+    Swal.fire("Removed!", "Meme removed from your wishlist !", "success");
   };
   return (
     <div>
